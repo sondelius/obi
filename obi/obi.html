@@ -1,0 +1,825 @@
+<template name="SignIn">
+	<div class="row">
+		<div class="col s12 orange darken-1 z-depth-1">
+			<span class="flow-text center-align white-text signin_title"> Welcome to Obi. Please sign in.</span>
+		</div>-
+	</div>
+	<div class=" container" id="signin_wrapper">
+	    <form>
+	        <div class="row">
+		        <div class="input-field col s12">
+		          <input id="email" type="text" class="validate">
+		          <label for="email"> School District Email</label>
+		        </div>
+	        
+	        
+		      	<div class="input-field col s12">
+		          	<input  id="password" type="password" class="validate">
+		          	<label for="password">Password</label>
+		        </div>
+	    	</div>
+
+	    	<a href="/HomePage" class="signin_button waves-effect waves-light btn orange darken-1">Sign In</a>
+	      
+	    </form>
+
+	    <br><br><br>
+
+  		<span class="flow-text center-align orange-text signin_title">Know when your students need you most.</span>
+  	</div>
+
+  	
+
+</template>
+
+<template name="main">
+	<head>
+	  <title>Obi</title>
+	  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+	  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+	</head>
+
+	<body>
+	<!-- Menu Button -->
+	<!-- <a id="menu-btn" data-activates="side-bar" class="waves-effect waves-light btn button-collapse"><i class="mdi-navigation-menu"></i></a> -->
+
+	<!-- <a id="notif-btn" data-activates="notification-bar" class="notification-collapse">
+		<i class="material-icons white-text z-depth-1 orange" id="alert-bell">notifications</i>
+	</a> -->
+
+	<!-- Side Nav -->
+	<ul class="side-nav" id="side-bar">
+		<li>Students you are helping</li>
+		<ul class="collection">
+        {{#each your_orange_hearts}}
+        	<li class="valign-wrapper collection-item avatar dismissible">
+        		<a href="/Profile">
+        			<img  src="{{picture}}" style="margin-top: 5%;" alt="" class="circle picture">
+        		</a>
+        		<span >{{Name}}</span>
+        		<!-- <a href="#!" class="secondary-content"><i class="material-icons">grade</i></a> -->
+        	</li>
+        {{/each}}
+    	</ul>
+    </ul>
+
+    <a href="#" id="add-data"></a>
+    <a href="#" id="remove-data"></a>
+
+	<ul class="side-nav collection" id="notification-bar">
+		 <ul class="collection">
+		    <li class="collection-item avatar dismissible">
+		      <img src="a.jpg" alt="" class="circle">
+		      <span >Brad Pit</span>
+		      <p>was awarded a purple heart by Mr. Donner.<br>
+		         He is taking care of it!
+		      </p>
+		      <!-- <a href="#!" class="secondary-content"><i class="material-icons">grade</i></a> -->
+		    </li>
+		    <li class="collection-item avatar dismissible">
+		      <img src="pic5.jpeg" alt="" class="circle">
+		      <span >Maddy Han</span>
+		      <p>was awarded a purple heart by Mrs. Little<br>
+		         You should think about reaching out!
+		      </p>
+		      <!-- <a href="#!" class="secondary-content"><i class="material-icons">grade</i></a> -->
+		    </li>
+		    <li class="collection-item avatar dismissible">
+			    <img src="pic3.jpeg" alt="" class="circle">
+			    <span >Candice Bradley</span>
+			    <p>was awarded a purple heart by Mrs. Malone<br>
+			         You should think about reaching out!
+			    </p>
+		      <!-- <a href="#!" class="secondary-content"><i class="material-icons">grade</i></a> -->
+		    </li>
+		</ul>
+            
+    </ul>
+
+	{{> yield}}
+	</body>
+
+</template>
+
+<template name="HomePage">
+	<!-- <div class="col col l10 m10 s10 col-xs-10"> -->
+  <!-- <div class="col l12 m12 s12 col-xs-12" id="banner">-->
+
+  	{{> NoteModal}}
+  	{{> HeartNoteModal}}
+  	{{> HomeIntroModal}}
+  	{{> HeartRemoveModal}}
+
+
+  	<!-- BANNER -->
+	<div class="col l12 m12 s12 orange darken-1 z-depth-1">
+		<div class="row">
+			<div class="col l4 m4 s4">
+				<div class="left-align">
+					<img style="width:40px; height:35px;" id="menu-btn" data-activates="side-bar" class="waves-effect waves-light z-depth-1 orange darken-1 button-collapse mdi-navigation-menu" src="hand_heart.png">
+				</div>
+			</div>
+			<div class="col l4 m4 s4">
+				<span class="center-align white-text title">Obi</span>
+			</div>
+			<!-- <div class="col l4 m4 s4 offset-l4 offset-m4 offset-s4">
+				<span class="center-align white-text title">Obi</span>
+			</div> -->
+			<!-- notification button -->
+			<div class="col l4 m4 s4">
+				<div class="right-align">
+					<a id="notif-btn" data-activates="notification-bar" class="notification-collapse">
+						<i class="material-icons white-text z-depth-1" id="alert-bell">notifications</i>
+					</a>
+				</div>
+			</div>
+		</div>
+
+		<!-- TABS -->
+		<div class="row">
+		<div class="col l10 m10 s10 offset-l1 offset-m1 offset-s1 orange darken-1">
+	      	<ul class="tabs orange darken-1 white-text">
+	      		
+	        	<li class="tab col s1"><a href="#p1" class="active white-text">P1</a></li>
+	        	<li class="tab col s1"><a href="#p2" class="white-text">P2</a></li>
+	        	<li class="tab col s1"><a href="#p3" class="white-text">P3</a></li>
+	        	<li class="tab col s1"><a href="#p4" class="white-text">P4</a></li>
+	        	<li class="tab col s1"><a href="#hearts" class="white-text">Hearts ({{getNumHearts}})</a></li>
+	        	<!-- <li class="tab col s1"><a href="#p5" class="white-text">P5</a></li>
+	        	<li class="tab col s1"><a href="#p6" class="white-text">P6</a></li>
+	        	<li class="tab col s1"><a href="#p7" class="white-text">P7</a></li>
+	        	<li class="tab col s1"><a href="#p8" class="white-text">P8</a></li> -->
+	        	<div class="indicator white" style="z-index:1"></div>
+	      	</ul>
+	    </div>
+	    </div>
+	</div>
+
+
+    <!-- STUDENT BINS -->
+    <div id="hearts" class="col l12 m12 s12">
+    	{{#if getNumHearts}}
+    		{{>heartsGrid}}
+    	{{else}}
+    		{{>emptyHeartsGrid}}
+    	{{/if}}
+    </div>
+	<div id="p1" class="col l12 m12 s12">{{>studentsGrid i=1}}</div>
+    <div id="p2" class="col l12 m12 s12">{{>studentsGrid i=2}}</div>
+    <div id="p3" class="col l12 m12 s12">{{>studentsGrid i=3}}</div>
+    <div id="p4" class="col l12 m12 s12">{{>studentsGrid i=4}}</div>
+    <!-- <div id="p5" class="col l12 m12 s12">{{>studentsGrid}}</div>
+    <div id="p6" class="col l12 m12 s12">{{>studentsGrid}}</div>
+    <div id="p7" class="col l12 m12 s12">{{>studentsGrid}}</div>
+    <div id="p8" class="col l12 m12 s12">{{>studentsGrid}}</div> -->
+</template>
+
+<!-- STUDENTS GRID TEMPLATE -->
+<template name="studentsGrid">
+	<div class="container">
+		<div class="row">
+			<div class="col l12 m12 s12">
+				<!-- {{#each getStudent "Brad Pit"}}
+					<h1>hello</h1>
+					{{> profThumb}}
+				{{/each}} -->
+				{{#each getStudents i}}
+					{{> profThumb}}
+				{{/each}}
+			</div>
+		</div>
+	</div>
+</template>
+
+<!-- HEARTS GRID -->
+<template name="heartsGrid">
+	<div class="container">
+		<div class="row">
+			<div class="col l12 m12 s12">
+				{{#each getHearts}}
+					{{> heartsProfThumb}}
+				{{/each}}
+			</div>
+		</div>
+	</div>
+</template>
+
+<template name="emptyHeartsGrid">
+	<div class="empty_hearts container">
+		<br>
+		<span style="display:block;" class="flow-text center-align orange-text">All of your students are happy!</span>
+		<br>
+		<span style="display:block;" class="flow-text center-align orange-text">Remember, next time one of your students recieves a purple heart, make sure you check if anyone has already reached out!</span>
+	</div>
+</template>
+
+<!-- PROF THUMB TEMPLATE -->
+<template name="profThumb">
+	<div class="col l2 m2 s4">
+		<div class="ProfDiv">
+			<a href="#heart-note-modal" class="heartBtn modal-trigger"><img class="PHeart .img-responsive" src="{{heart}}"></a>
+			<a href="/Profile" class="prof-img"><img class="homeProf circle" src="{{picture}}"></a>
+			<a href="#frownModal{{_id}}" class="frownBtn modal-trigger"><img class="Frown" src="{{frown}}"></a>
+			<!-- <a href="#heartModal{{_id}}" class="heartBtn modal-trigger"><img class="PHeart .img-responsive" src="{{heart}}"></a>
+			<a href="/Profile" class="prof-img"><img class="homeProf circle" src="{{picture}}"></a>
+			<a href="#frownModal{{_id}}" class="frownBtn modal-trigger"><img class="Frown" src="{{frown}}"></a>
+			{{> HeartModal}}
+			{{> FrownModal}} -->
+		</div>
+	</div>
+</template>
+
+<!-- HEARTS PROF THUMB -->
+<template name="heartsProfThumb">
+	<div class="col l2 m2 s4">
+		<div class="ProfDiv">
+			<a href="#heart-note-modal" class="heartBtn modal-trigger"><img class="PHeart .img-responsive" src="{{heart}}"></a>
+			<a href="/Profile" class="prof-img"><img class="homeProf circle" src="{{picture}}"></a>
+			<a href="#heartsFrownModal{{_id}}" class="frownBtn modal-trigger"><img class="Frown" src="{{frown}}"></a>
+			<!-- <a href="#heartsHeartModal{{_id}}" class="heartBtn modal-trigger"><img class="PHeart .img-responsive" src="{{heart}}"></a>
+			<a href="/Profile" class="prof-img"><img class="homeProf circle" src="{{picture}}"></a>
+			<a href="#heartsFrownModal{{_id}}" class="frownBtn modal-trigger"><img class="Frown" src="{{frown}}"></a>
+			{{> HeartsHeartModal}}
+			{{> HeartsFrownModal}} -->
+		</div>
+	</div>
+</template>
+
+<!-- HOME INTRO MODAL -->
+<template name="HomeIntroModal">
+	<!-- Modal Structure -->
+	<div id="home_intro_modal" class="modal">
+	    <div class="modal-content">
+	    	<span class="modalHead"> Welcome, Jane Doe. This is your home page. </span>
+	    	<p> 
+	    		Here you can view all of your students sorted by period.
+	    	 	You can keep track of your students' well-being by giving them Purple Hearts or Frowny Faces. 
+	    	</p>
+	    	<hr style="color: white;">
+	    	<br>
+	    	<img class="intro_image" src="heart_active.png" style="width: 40px; height: 40px;">
+	    	<p>
+	    	 	When you give a student a Purple Heart, you notify all of their other teachers and counselors that they are
+		    	going through a significant life struggle. 
+	    	</p>
+	    	
+	    	<img class="intro_image" src="sadface5.png" style="width: 40px; height: 40px;">
+	    	<p>  A Frowny Face, on the other hand, is simply for
+		    	 your personal use to track a student's daily well-being. Although Frowny Faces will visually
+		    	 reset every night, the system will internally keep track of the Frowny Faces you assign, and will notify
+		    	 you, other relevant teachers, and counselors of any trends it notices.
+		    </p>
+		    
+		    <img class="intro_image" src="heart_outline.png" style="width: 40px; height: 40px;">
+	    	<p>  A Purple Heart with an orange center indicates that a teacher has volunteered to be the first person to reach out to that student. 
+		    </p>
+
+		    <img class="intro_image" src="hand_heart2.png" style="width: 45px; height: 40px;">
+		    <p> View the students you've agreed to reach out to by clicking this icon in the top left corner.</p>
+
+
+		    <img class="intro_image circle" src="a.jpg" style="width: 40px; height: 40px;">
+		    <p> Visit a student's profile by clicking on their face. </p>
+
+		    <img class="intro_image" src="notification.png" style="height: 80px;">
+	    	<p>
+	    	 	Lastly, notifications will be sent automatically to your mobile device.
+	    	</p>
+
+		    <div class="modal-footer">
+		    	<a href="#!" class=" modal-action modal-close waves-effect waves-orange btn-flat">Got it!</a>
+		    </div>
+        
+	    </div>
+
+	</div>
+</template>
+
+<!-- PROFILE INTRO MODAL -->
+<template name="ProfileIntroModal">
+	<!-- Modal Structure -->
+	<div id="profile_intro_modal" class="modal">
+	    <div class="modal-content">
+	    	<span class="modalHead"> This is your student's profile </span>
+	    	<p> 
+	    		Here you will find more information on your student including learning strategies, interests, and contact info.
+	    		You, along with other teachers, may collaboratively update this information.
+	    	</p>
+
+	    	<hr style="color: white;">
+	    	<br>
+
+	    	<img class="intro_image" src="reach_out_screen.png" style=" height: 40px;">
+	    	<p> 
+	    		If a student has a Purple Heart, you may volunteer to be the first to reach out to them by clicking this button which would display under their picture. 
+	    	</p>
+
+	    	<img class="intro_image" src="heart_outline.png" style="width: 40px; height: 40px;">
+	    	<p> 
+	    		If a student has a Purple Heart and is currently being reached out to, you may see who is reaching out to them under their picture. We advise that you touch base with this person to learn more before reaching out yourself. Just being aware of the issue is invaluable in it's own right!
+	    	</p>
+
+	    	<img class="intro_image" src="chip_screen.png" style=" height: 40px;">
+	    	<p> 
+	    		Lastly, you can tap or hover over these elements to reveal anecdotal explanations.
+	    	</p>
+
+	    	<div class="modal-footer">
+		    	<a href="#!" class=" modal-action modal-close waves-effect waves-orange btn-flat">Got it!</a>
+		    </div>
+       
+	    </div>
+
+	</div>
+</template>
+
+<!-- NOTE MODAL -->
+<template name="NoteModal">
+	<!-- Modal Structure -->
+	<div id="note-modal" class="modal">
+	    <div class="modal-content">
+	    	<span class="modalHead"> Note for Your Personal Records</span> 
+	      	
+			  
+				<div class="row">
+				    <form class="col s12">
+				      <div class="row">
+				        <div class="input-field col s12">
+				          <i class="material-icons prefix">edit</i>
+				          <input id="icon_prefix" type="text" class="validate">
+				        </div>
+				      </div>
+				    </form>
+				</div>
+
+				<div class="past-notes">
+					<p>Choose from recent notes on this student:</p>
+					<div class="chip note_chip">
+						Uncooperative in class
+					</div>
+					<div class="chip note_chip">
+						Was abnormally quiet
+					</div>
+					<div class="chip note_chip">
+						Was disrespectful to other students
+					</div>
+				</div>
+        
+        
+	    </div>
+	    <div class="modal-footer">
+	      	<a href="#!" id="submit-note" class="modal-action modal-close waves-effect waves-green btn-flat">submit</a>
+	      	<a href="#!" class="modal-action modal-close waves-effect waves-green btn-flat">cancel</a>
+	    </div>
+	</div>
+</template>
+
+<!-- HEART NOTE MODAL -->
+<template name="HeartNoteModal">
+	<!-- Modal Structure -->
+	<div id="heart-note-modal" class="modal">
+	    <div class="modal-content">
+	    	<span class="modalHead"> Reason for Purple Heart (seen by their teachers and counselors)</span> 
+	      	
+			  
+				<div class="row">
+				    <form class="col s12">
+				      <div class="row">
+				        <div class="input-field col s12">
+				          <i class="material-icons prefix">edit</i>
+				          <input id="icon_prefix" type="text" class="validate">
+				        </div>
+				      </div>
+				    </form>
+				</div>
+        
+        
+	    </div>
+	    <div class="modal-footer">
+	      	<a href="#!" id="submit-heart-note" class="modal-action modal-close waves-effect waves-green btn-flat">submit</a>
+	      	<a href="#!" class="modal-action modal-close waves-effect waves-green btn-flat">no explanation</a>
+	    </div>
+	</div>
+</template>
+
+<!-- HEART Remove MODAL -->
+<template name="HeartRemoveModal">
+	<!-- Modal Structure -->
+	<div id="heart-remove-modal" class="modal">
+	    <div class="modal-content">
+	    	<span class="modalHead"> Reason for Removing (seen by their teachers and counselors)</span> 
+	      	
+			  
+				<div class="row">
+				    <form class="col s12">
+				      <div class="row">
+				        <div class="input-field col s12">
+				          <i class="material-icons prefix">edit</i>
+				          <input id="icon_prefix" type="text" class="validate">
+				        </div>
+				      </div>
+				    </form>
+				</div>
+        
+        
+	    </div>
+	    <div class="modal-footer">
+	      	<a href="#!" id="submit-heart-note" class="modal-action modal-close waves-effect waves-green btn-flat">submit</a>
+	    </div>
+	</div>
+</template>
+
+
+<!-- ADD ONE MODAL -->
+<template name="AddOneModal">
+	<!-- Modal Structure -->
+	<div id="add-one-modal" class="modal">
+	    <div class="modal-content">
+	    	<span class="modalHead"> New Interest </span> 
+	      			  
+				  <div class="row">
+				    <form class="add_one_form col s12">
+				      <div class="row">
+				        <div class="input-field col s12">
+				          <i class="material-icons prefix">edit</i>
+				          <input  required="true" aria-required="true" id="icon_prefix" type="text" class="validate">
+				        </div>
+				      </div>
+				        <div class="modal-footer">
+	      					<input type="submit" value="submit" class=" modal-action modal-close waves-effect waves-green btn-flat">
+	    				</div>
+				    </form>
+				  </div>
+        
+	    </div>
+	    
+	</div>
+</template>
+
+<!-- HEARTS GRID HEART MODAL -->
+<template name="HeartsHeartModal">
+	<!-- Modal Structure -->
+	<div id="heartsHeartModal{{_id}}" class="modal">
+	    <div class="modal-content">
+	    	<span class="modalHead">You are about to assign {{Name}} a heart.</span> 
+	      	<span class="modalText">This will alert all other teachers of this student that they are sruggling with an issue that is affecting their presence in class. Would you like to continue?</span>
+	    </div>
+	    <div class="modal-footer">
+	      	<a href="#!" class="heartAgree modal-action modal-close waves-effect waves-green btn-flat">continue</a>
+	      	<a href="#!" class="modal-action modal-close waves-effect waves-green btn-flat">cancel</a>
+	    </div>
+	</div>
+</template>
+
+<!-- FROWN MODAL -->
+<template name="FrownModal">
+	<!-- Modal Structure -->
+	<div id="frownModal{{_id}}" class="modal">
+	    <div class="modal-content">
+	      	<span class="modalHead">You are about to mark {{Name}} as feeling down today.</span> 
+	      	<span class="modalText">We will ask you again how this student is doing in two days. Would you like to continue?</span>
+	    </div>
+	    <div class="modal-footer">
+	      	<a href="#!" class="frownAgree modal-action modal-close waves-effect waves-green btn-flat">continue</a>
+	      	<a href="#!" class="modal-action modal-close waves-effect waves-green btn-flat">cancel</a>
+	    </div>
+	</div>
+</template>
+
+<!-- HEARTS GRID FROWN MODAL -->
+<template name="HeartsFrownModal">
+	<!-- Modal Structure -->
+	<div id="heartsFrownModal{{_id}}" class="modal">
+	    <div class="modal-content">
+	    	<span class="modalHead">You are about to mark {{Name}} as feeling down today.</span> 
+	      	<span class="modalText">We will ask you again how this student is doing in two days. Would you like to continue?</span>	    
+	    </div>
+	    <div class="modal-footer">
+	      	<a href="#!" class="frownAgree modal-action modal-close waves-effect waves-green btn-flat">continue</a>
+	      	<a href="#!" class="modal-action modal-close waves-effect waves-green btn-flat">cancel</a>
+	    </div>
+	</div>
+</template>
+
+<!-- PROFILE TEMPLATE -->
+<template name="Profile">
+	{{#with student}}
+		{{> ProfileContent}}
+	{{/with}}
+</template>
+
+<!-- PROFILE MODAL -->
+<template name="ProfMod">
+	<div id="modal1" class="modal">
+    <div class="modal-content">
+      <h4>This is an ancecdote</h4>
+      <p>that explains why that teacher said this student benefitted from this kind of 
+      		academic experience</p>
+    </div>
+    <div class="modal-footer">
+      <a href="#!" class=" modal-action modal-close waves-effect waves-green btn-flat">Agree</a>
+    </div>
+  </div>
+</template>
+
+<!-- CLARK PROFILE CONTENT -->
+<template name="ProfileContent">
+	{{> AddOneModal}}
+	{{> ProfileIntroModal}}
+	<body>
+		<a href="/HomePage" id="home-btn">
+			<i class="material-icons white-text z-depth-1 orange" id="alert-bell">home</i>
+		</a>
+		<div class="container"> 
+
+			<div class="upper-profile">
+				<div class="row">
+					<div class="col s10 offset-s1">
+						<div style="position:relative;">
+							<img src="{{picture}}" class="responsive-img circle profile_image"> 
+							{{#if hearting}}
+								<img src="{{heart}}" class="responsive-img PHeart2">
+								
+							{{/if}}
+
+						</div>
+
+						<span id="student-name" class="flow-text">{{Name}}</span>
+						<span id="student-year" class="flow-text" > Class of 2017 </span>
+					</div>	
+					{{#if hearting}}
+						{{#if helped}}
+							{{#if isBrad}}
+								<div class="chip tooltipped" data-position="bottom" data-delay="50" data-tooltip="Remember to touch base with John Iverson before reaching out yourself!" > <img src="teacher2.jpg"> is reaching out </div>
+
+
+
+							{{else}}
+								<div class='chip tooltipped' data-position='bottom' data-delay='50' data-tooltip='Skylar Smith'> <img src='profile_icon.jpg'> is reaching out </div>
+							{{/if}}
+						{{else}}	
+							<a class="reach_out_btn waves-effect waves-light btn orange darken-1"> I will reach out </a>
+						{{/if}}
+					{{/if}}
+				</div>
+				
+			</div>
+
+			<div class="lower-profile">
+				<div class="row">
+					<div class="col s12">
+						<ul class="tabs" id="profile_tabs">
+							<li class="tab col s3"><a class="active" href="#test1">Updates</a></li>
+							<li class="tab col s3"><a href="#test2">Anecdotes</a></li>
+							
+							<li class="tab col s3"><a href="#test4">interests</a></li>
+							<li class="tab col s3"><a href="#test3">contacts</a></li>
+						</ul>
+					</div>
+
+					<div id="test1" class="col s12">
+						<!-- <p class="flow-text center-align">Recent updates</p> -->
+						<ul id="activity_list" class="collection my_collection">
+							<li class="collection-item avatar">
+								<img id="purple_heart" src="heart_backlit.png" alt="" class="circle material-icons tooltipped" data-position="right" data-delay="50" data-tooltip="This message tells you why this purple heart was awarded">
+								<span >Awarded a Purple Heart</span>
+								<p> by Anna Thompson <br>
+									5 days ago
+								</p>
+								<!-- <a href="#!" class="secondary-content"><i class="material-icons">grade</i></a> -->
+							</li>
+							<li class="collection-item avatar">
+								<i class="material-icons circle orange tooltipped" data-position="right" data-delay="50" data-tooltip="This message tells you what the strategy is and why this teacher thinks it works for this student">lightbulb_outline</i>
+								<span > Learning Strategies updated </span>
+								<p> by Spencer Jones <br>
+									a week ago
+								</p>
+								<!-- <a href="#!" class="secondary-content"><i class="material-icons">grade</i></a> -->
+							</li>
+							<li class="collection-item avatar">
+								<i class="material-icons circle blue tooltipped" data-position="right" data-delay="50" data-tooltip="This message tells you more about the kid's interest">album</i>
+								<span > Interests updated</span>
+								<p> by Kendra Lee <br>
+									2 weeks ago
+								</p>
+								<!-- <a href="#!" class="secondary-content"><i class="material-icons">grade</i></a> -->
+							</li>
+							<li class="collection-item avatar">
+								<i class="material-icons circle red tooltipped" data-position="right" data-delay="50" data-tooltip="This message tells you who was added and how they're connected to the student">group</i>
+								<span > Contacts updated</span>
+								<p> by Rick O'Donnovan <br>
+									2 weeks ago
+								</p>
+								<!-- <a href="#!" class="secondary-content"><i class="material-icons">grade</i></a> -->
+							</li>
+						</ul>
+					</div>
+
+					<div id="test2" class="col s12"> 
+						{{> ProfMod}}
+						<!-- <p class="flow-text center-align"> Things that work best for {{Name}} </p> -->
+						<ul id="strats_list" class="collection my_collection">
+							<li class="collection-item avatar">
+								<i class="material-icons circle green">group</i>
+								<div >Works great with Cindy May</div>
+								<a class="tooltipped" data-position="top" data-delay="50" data-tooltip="This is an anecdote that tells you why this teacher thinks {{Name}}  well with Cindy May" ><div class="chip spaced_chip">
+									<img src="teacher2.jpg" alt="teacher">
+									John Iverson
+								</div></a>
+								<a class="tooltipped" data-position="top" data-delay="50" data-tooltip="This is an anecdote that tells you why this teacher agrees that {{Name}} works well with Cindy May"><div class="chip spaced_chip">
+									<img src="teacher3.jpg" alt="teacher">
+									Sally Jones
+								</div></a>
+								<div class="chip spaced_chip plus_one">
+									<a class="plus_one_link" href="">+1</a>
+								</div>
+							</li>
+							<li class="collection-item avatar">
+								<i class="material-icons circle orange">accessibility</i>
+								<div > Really benefits from individual attention </div>
+
+								<a class="tooltipped" data-position="top" data-delay="50" data-tooltip="This is an anecdote that tells you why this teacher thinks providing individual attention works well for {{Name}}"><div class="chip spaced_chip">
+									<img src="teacher4.jpg" alt="teacher">
+									Steve Cook
+								</div></a>
+								<!-- {{#if chip_1}} -->
+								<div class="chip spaced_chip plus_one">
+									<a class="plus_one_link" href="">+1</a>
+								</div>
+										<!-- {{else}}
+										<div class="chip spaced_chip plus_one" id="chip_1">
+								    		<a class="plus_one_link" href="#">+poop</a>
+										</div>
+										{{/if}} -->
+
+									</li>
+									<li class="collection-item avatar">
+										<i class="material-icons circle blue">explore</i>
+										<div > Loves having class outside</div>
+
+										<a class="tooltipped" data-position="top" data-delay="50" data-tooltip="This is an anecdote that tells you why this teacher thinks having class outside is a good thing for {{Name}}"><div class="chip spaced_chip">
+											<img src="teacher2.jpg" alt="teacher">
+											John Iverson
+										</div></a>
+										<a class="tooltipped" data-position="top" data-delay="50" data-tooltip="This is an anecdote that tells you why this teacher thinks having class outside is a good thing for {{Name}}"><div class="chip spaced_chip">
+											<img src="teacher4.jpg" alt="teacher">
+											Steve Cook
+										</div></a>
+										<div class="chip spaced_chip plus_one">
+											<a class="plus_one_link" href="">+1</a>
+										</div>
+									</li>
+									<li class="collection-item avatar">
+										<i class="material-icons circle red">group</i>
+										<div > Gets a lot out of peer feedback </div>
+										<a class="tooltipped" data-position="top" data-delay="50" data-tooltip="This is an anecdote that tells you why this teacher thinks {{Name}} gets a lot out of peer feedback"><div class="chip spaced_chip">
+											<img src="teacher3.jpg" alt="teacher">
+											Sally Jones
+										</div></a>										
+										<div class="chip spaced_chip plus_one">
+											<a class="plus_one_link" href="">+1</a>
+										</div>
+									</li>
+								</ul>
+							</div>
+
+					<div id="test3" class="col s12">
+						<ul id="network_list" class="collection my_collection">
+							<li class="collection-item avatar">
+								<i class="tooltipped material-icons circle blue" data-position="right" data-delay="50" data-tooltip="Call 925-817-1235">phone</i>
+								<span> Mom </span>
+								<p> 925-817-1235 </p>							        
+								<!-- <a href="#!" class="secondary-content"><i class="material-icons">grade</i></a> -->
+							</li>
+							<li class="collection-item avatar">
+								<i class="tooltipped material-icons circle blue" data-position="right" data-delay="50" data-tooltip="Call 925-817-1234">phone</i>
+								<span > Dad </span>
+								<p> 925-817-1234 </p>								        
+								<!-- <a href="#!" class="secondary-content"><i class="material-icons">grade</i></a> -->
+							</li>
+							<li class="collection-item avatar">
+								<i class="tooltipped material-icons circle blue" data-position="right" data-delay="50" data-tooltip="Call 925-817-1254">phone</i>
+								<span > Grandma </span>
+								<p> 925-817-1254</p>								        
+								<!-- <a href="#!" class="secondary-content"><i class="material-icons">grade</i></a> -->
+							</li>
+						</ul>
+					</div>
+
+					<div id="test4" class="col s12">
+
+						<ul id="strats_list" class="collection my_collection">
+
+							<li class="collection-item avatar">
+								<i class="material-icons circle green">explore</i>
+								<div >Extra Curriculars</div>
+
+								<div class="chip spaced_chip tooltipped" data-position="top" data-delay="50" data-tooltip="This message tells you why this teacher thinks {{Name}} likes Programming">
+									<img src="teacher4.jpg" alt="teacher">
+									Programming
+								</div>
+
+								<div class="chip spaced_chip tooltipped" data-position="top" data-delay="50" data-tooltip="This message tells you why this teacher thinks {{Name}} is into Salsa Dancing">
+									<img src="teacher3.jpg" alt="teacher">
+									Salsa Dancing
+								</div>
+								<div id="add_one_ec" class="chip spaced_chip add_one">
+									<a class="add_one_link modal-trigger" href="#add-one-modal">Add One</a>
+								</div>
+								<!-- <a href="#!" class="secondary-content"><i class="material-icons">grade</i></a> -->
+							</li>
+
+							<li class="collection-item avatar">
+								<i class="material-icons circle orange">favorite</i>
+								<div > Passions</div>
+								<div class="chip spaced_chip tooltipped" data-position="top" data-delay="50" data-tooltip="This message tells you why this teacher thinks {{Name}} is into fishing">
+									<img src="teacher3.jpg" alt="teacher">
+									Fishing
+								</div>
+								<div class="chip spaced_chip tooltipped" data-position="top" data-delay="50" data-tooltip="This message tells you why this teacher thinks {{Name}} is into pottery">
+									<img src="teacher2.jpg" alt="teacher">
+									Pottery
+								</div>		
+								<div id="add_one_passion" class="chip spaced_chip add_one">
+									<a class="add_one_link modal-trigger" href="#add-one-modal">Add One</a>
+								</div>								
+								<!-- <a href="#!" class="secondary-content"><i class="material-icons">grade</i></a> -->
+							</li>
+
+							<li class="collection-item avatar">
+								<i class="material-icons circle blue">tv</i>
+								<div >Entertainment</div>
+								<div class="chip spaced_chip tooltipped" data-position="top" data-delay="50" data-tooltip="This message tells you why this teacher thinks {{Name}} likes The Beatles">
+									<img src="teacher2.jpg" alt="teacher">
+									The Beatles
+								</div>
+								<div class="chip spaced_chip tooltipped" data-position="top" data-delay="50" data-tooltip="This message tells you why this teacher thinks {{Name}} is into John Legend">
+									<img src="teacher3.jpg" alt="teacher">
+									John Legend
+								</div>
+								<div id="add_one_ent" class="chip spaced_chip add_one">
+									<a class="add_one_link modal-trigger" href="#add-one-modal">Add One</a>
+								</div>
+								<!-- <a href="#!" class="secondary-content"><i class="material-icons">grade</i></a> -->
+							</li>
+						</ul>
+					</div>
+						</div>
+					</div>
+				</div>
+
+		</body>
+</template>
+	
+
+<!-- NOTIFICATION TEMPLATE -->
+<template name="notification">
+	<!-- make content of the li equal to whatever notification object variable
+			holds the text -->
+	<li class="notif"><span>Hello Sandy Tang was given a purple heart today by <p class="teacher">Mr. Johnson</p></span></li>
+</template>
+
+
+
+<!-- <div class="col l2 m2 s4 col-xs-4">
+				<div class="ProfDiv">
+					<img class="PHeart .img-responsive" src="heart_active">
+					<img class="ProfPic circle" src="a.jpg">
+					<img class="Frown" src="gray-frown.svg">
+				</div>
+			</div>
+			<div class="col l2 m2 s4 col-xs-4">
+				<div class="ProfDiv">
+					<img class="PHeart" src="heart_active">
+					<img class="ProfPic circle" src="b.jpg">
+					<img class="Frown" src="gray-frown.svg">
+				</div>
+			</div>
+			<div class="col l2 m2 s4 col-xs-4">
+				<div class="ProfDiv">
+					<img class="PHeart" src="heart_active">
+					<img class="ProfPic circle" src="c.png">
+					<img class="Frown" src="gray-frown.svg">
+				</div>
+			</div>
+			<div class="col l2 m2 s4 col-xs-4">
+				<div class="ProfDiv">
+					<img class="PHeart" src="heart_active">
+					<img class="ProfPic circle" src="d.jpg">
+					<img class="Frown" src="gray-frown.svg">
+				</div>
+			</div>
+			<div class="col l2 m2 s4 col-xs-4">
+				<div class="ProfDiv">
+					<img class="PHeart" src="heart_active">
+					<img class="ProfPic circle" src="e.jpg">
+					<img class="Frown" src="gray-frown.svg">
+				</div>
+			</div>
+			<div class="col l2 m2 s4 col-xs-4">
+				<div class="ProfDiv">
+					<img class="PHeart" src="heart_active">
+					<img class="ProfPic circle" src="f.jpg">
+					<img class="Frown" src="gray-frown.svg">
+				</div>
+			</div> -->

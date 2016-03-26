@@ -1,0 +1,245 @@
+/* CSS declarations go here */
+
+#signin_wrapper{
+	margin-top: 5%;
+	width: 30%;
+	min-width: 200px;
+}
+
+.signin_button {
+	width: 100%;
+}
+html {
+	height: 100%;
+}
+body {
+	height:100%;
+	font-family: "Roboto";
+	font-weight: 300;
+}
+
+.banner {
+	background-color: #F6A2AD;
+}
+
+#home-btn {
+	z-index: 1;
+	position: absolute;
+	left: 20px;
+	top: 1%;
+	/*width: 30px;
+	padding: 10px;*/
+}
+.note_chip:hover {
+	cursor: pointer;
+}
+/*#notif-btn {
+	z-index: 1;
+	position: absolute;
+	left: 96%;
+	top: 1%;
+}*/
+
+.title {
+	display: block;
+	margin-top: 30px;
+	font-size: 54px;
+	font-weight: 200;
+}
+
+.signin_title {
+	display: block;
+	margin-top: 20px;
+	margin-bottom: 15px;
+	font-weight: 300;
+}
+
+.homeProf {
+	width: 100px;
+	max-width: 100%;
+	max-height: 100%;
+	min-width: 75px;
+	min-height: 75px;
+	display: block;
+	height: auto;
+}
+
+.p {
+	/*height: 100%;*/
+}
+
+#alert-bell{
+	margin-top: 15px;
+	font-size: 35px;
+	cursor: hand;
+	cursor: pointer;
+}
+
+.notif-btn {
+	cursor: hand;
+	cursor: pointer;
+}
+
+#side-bar li{
+	text-align: center;
+}
+
+
+#menu-btn {
+	margin-top: 15px;
+	margin-left: 5px;
+}
+
+.intro_image {
+	display: block;
+	margin-left: auto;
+	margin-right: auto;
+}
+
+.PHeart {
+	width: 40px;
+	height: 43px;
+	position: absolute;
+	top: 0px;
+	left: 65%;
+
+}
+
+.PHeart2 {
+	width: 70px;
+	height: 73px;
+	position: absolute;
+	top: 0px;
+	left: 65%;
+
+}
+
+.Frown {
+	width: 40px;
+	height: 40px;
+	margin-top: 5%;
+	margin-left:23%;
+}
+
+.ProfDiv {
+	position: relative;
+	margin-top: 50px;
+	height: 150px;
+}
+
+.modalHead {
+	display: block;
+	font-weight: 400;
+	font-family: "Roboto";
+	font-size: 22px;
+}
+
+.modalText {
+	display: block;
+	font-weight: 300;
+	font-family: "Roboto";
+	font-size: 18px;
+}
+
+#add-data {
+	position: absolute;
+	left: 97%;
+	top: 95%;
+	width: 30px;
+	height: 30px;
+	background-color: none;
+}
+
+#remove-data {
+	position: absolute;
+	left: 1%;
+	top: 90%;
+	width: 30px;
+	height: 30px;
+	background-color: none;
+}
+
+/************* PROFILE *********************/
+
+.upper-profile {
+	text-align: center;
+}
+
+.profile_image  {
+	width: 220px;
+	/*max-height: 200px;*/
+}
+
+#student-name{
+	display: block;
+}
+#student-year {
+	display:block;
+	font-weight: 200;
+}
+
+#content {
+	background-color: red;
+	display: inline-block;
+	width: 100%;
+}
+
+.upper-profile {
+	width: 50%;
+	margin: 0 auto;
+}
+
+.container {
+	margin-top: 2%;
+}
+
+#purple_heart {
+
+}
+
+.my_collection {
+	width: 75%;
+	margin-top: 3%;
+	margin-left: auto;
+	margin-right: auto;
+}
+
+#activity_list, #network_list {
+	text-align: center;
+}
+
+.spaced_chip {
+	margin-top: 6px;
+}
+
+.material-icons.circle {
+	/*margin-top: 1%;*/
+}
+
+.plus_one, .add_one{
+	-webkit-transition: background-color .6s; /* Safari */
+    transition: background-color .6s;
+}
+
+.plus_one:hover, .add_one:hover {
+	background-color:  #f6dada;
+	cursor: pointer;
+}
+.plus_one_link, .add_one_link{
+	color: #ee6e73;
+	pointer-events: none;
+}
+
+
+.add_buton {
+	background-color: #323232;
+	/*margin: 0 auto;*/
+}
+
+.btn-toast {
+	/*width: 30%;*/
+}
+
+#note-modal {
+	height: auto;
+}
